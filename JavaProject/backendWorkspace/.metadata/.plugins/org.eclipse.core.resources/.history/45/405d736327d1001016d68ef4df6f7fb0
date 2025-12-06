@@ -1,0 +1,46 @@
+package com.bridgesoft.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.bridgesoft.exception.ResourceNotFoundException;
+import com.bridgesoft.model.Employee;
+import com.bridgesoft.repo.EmployeeRepository;
+
+
+@Service
+public class EmployeeService 
+{
+	@Autowired
+	EmployeeRepository employeeRepository;
+	
+	public Employee addEmployee(Employee employee)
+	{
+		return employeeRepository.save(employee);
+	}
+	
+	public List<Employee> getAllEmployees()
+	{
+		return employeeRepository.findAll();
+	}
+
+	public Employee getEmployeeById(Long id) 
+	{
+		return employeeRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Id Not Found"));
+	}
+
+	
+
+//	public Employee updateEmployee(Long id, Employee employee) 
+//	{
+//		Employee emp=employeeRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Id not found"));
+//		emp.setName(employee.getName());
+//		emp.setDoj(employee.getDoj());
+//		emp.setDept(employee.getDept());
+//		return employeeRepository.save(emp);
+//	}
+
+	
+}

@@ -1,0 +1,5 @@
+package com.bridgesoft.exception;
+
+public class ResourceNotFound {
+
+}

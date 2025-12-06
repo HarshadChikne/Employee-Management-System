@@ -1,0 +1,5 @@
+package com.bridgesoft.service;
+
+public class EmployeeService {
+
+}

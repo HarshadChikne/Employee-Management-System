@@ -1,0 +1,34 @@
+package com.bridgesoft.model;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Transactional
+public class Employee 
+{
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@JsonFormat(pattern = "dd-mm-yyyy")
+	private String doj;
+	
+	@Column
+	private String name;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "dept_fk")
+	private Department department;
+}
